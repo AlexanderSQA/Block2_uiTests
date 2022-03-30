@@ -8,9 +8,9 @@ public class ChromeWebDriver implements IBrowserOptions {
 
   @Override
   public WebDriver getDriver() {
-    ChromeOptions options = new org.openqa.selenium.chrome.ChromeOptions();
+    ChromeOptions options = new ChromeOptions();
     options.addArguments("--kiosk");
-
+    options.addArguments("--incognito");
     return new ChromeDriver(options);
 
 

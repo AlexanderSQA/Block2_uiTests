@@ -8,6 +8,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="listeners" />
+        <module name="uiTests" />
         <module name="Block2_homework_1" />
       </profile>
     </annotationProcessing>

@@ -1,6 +1,7 @@
 package pages;
 
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.PageFactory;
 
 public abstract class BasePage {
 
@@ -11,6 +12,7 @@ public abstract class BasePage {
   public BasePage(WebDriver driver, String path) {
     this.driver = driver;
     this.path = path;
+    PageFactory.initElements(driver, this);
   }
 
   public void open() {

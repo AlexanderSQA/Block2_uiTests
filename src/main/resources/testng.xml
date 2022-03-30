@@ -3,7 +3,8 @@
 <suite name="Suite1" verbose="1" >
     <test name="Nopackage" >
         <classes>
-            <class name="Runner_Test" />
+            <class name="MainPageOpen_Test" />
+            <class name="FindQASpec_Test" />
         </classes>
     </test>
 </suite>

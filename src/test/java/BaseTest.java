@@ -7,6 +7,7 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import webdriverfactory.WDFactory;
 
+import java.time.Duration;
 import java.util.Locale;
 
 public class BaseTest {
@@ -14,12 +15,12 @@ public class BaseTest {
   protected WebDriverWait wait;
   protected Actions actions;
   protected org.apache.logging.log4j.Logger logger = LogManager.getLogger(BaseTest.class);
-  //String driverName = "Chrome"; //System.getProperty("browser").toUpperCase(Locale.ROOT); // TODO Как перенести в WDF, а потом прокинуть driverName в BaseTest?
 
   @BeforeMethod
   public void setupWebDriver() throws DriverNotSupported {
     WDFactory wdFactory = new WDFactory();
     driver = wdFactory.getDriver(System.getProperty("browser").toUpperCase(Locale.ROOT));
+    wait = new WebDriverWait(driver, Duration.ofSeconds(10));
   }
 
   @AfterMethod
