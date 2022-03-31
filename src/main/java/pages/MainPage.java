@@ -3,6 +3,7 @@ package pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 
 public class MainPage extends BasePage {
@@ -29,4 +30,10 @@ public class MainPage extends BasePage {
     super(driver, "/");
   }
 
+  public void moveToElementActions(Actions actions,WebElement element){
+    actions.moveToElement(element).perform();
+  }
+  public void moveToElementAndClickActions(Actions actions, WebElement element){
+    actions.moveToElement(element).click().build().perform();
+  }
 }

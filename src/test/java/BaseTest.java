@@ -21,6 +21,7 @@ public class BaseTest {
     WDFactory wdFactory = new WDFactory();
     driver = wdFactory.getDriver(System.getProperty("browser").toUpperCase(Locale.ROOT));
     wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+    actions = new Actions(driver);
   }
 
   @AfterMethod
