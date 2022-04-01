@@ -14,12 +14,13 @@ public class RedirectToAppNonAuthPage_Test extends BaseTest{
 
     javaAutoSpecPage.open();
 
-    javaAutoSpecPage.clickAppButton(actions, javaAutoSpecPage.appButton);
-    javaAutoSpecPage.clickRedirectButton(actions, javaAutoSpecPage.redirectButton);
+    javaAutoSpecPage
+            .clickAppButton(actions, javaAutoSpecPage.appButton)
+            .clickRedirectButton(actions, javaAutoSpecPage.redirectButton); //TODO по какой-то причине падает по тайм-ауту
 
     wait.until(ExpectedConditions.urlContains("/assessment/275/"));
 
-    Assert.assertEquals(appNonAuthPage.noRefTitle.getText(), "Специализация QA Automation Engineer");
+    Assert.assertEquals(appNonAuthPage.noRefTitle.getText(), "СПЕЦИАЛИЗАЦИЯ QA AUTOMATION ENGINEER");
 
   }
 }

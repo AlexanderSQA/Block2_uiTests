@@ -30,10 +30,12 @@ public class MainPage extends BasePage {
     super(driver, "/");
   }
 
-  public void moveToElementActions(Actions actions,WebElement element){
+  public MainPage moveToElementActions(Actions actions,WebElement element){
     actions.moveToElement(element).perform();
+    return this;
   }
-  public void moveToElementAndClickActions(Actions actions, WebElement element){
+  public MainPage moveToElementAndClickActions(Actions actions, WebElement element){
     actions.moveToElement(element).click().build().perform();
+    return this;
   }
 }

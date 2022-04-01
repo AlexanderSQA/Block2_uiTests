@@ -13,10 +13,11 @@ public class FindJavaAutoSpecPage_Test extends BaseTest{
 
     mainPage.open();
 
-    mainPage.moveToElementActions(actions, mainPage.courseMenuItem);
-    mainPage.moveToElementActions(actions, mainPage.testingSubMenuItem);
-    mainPage.moveToElementActions(actions, mainPage.dropDownMenuTrigger);
-    mainPage.moveToElementAndClickActions(actions, mainPage.specJavaAutomation);
+    mainPage
+        .moveToElementActions(actions, mainPage.courseMenuItem)
+        .moveToElementActions(actions, mainPage.testingSubMenuItem)
+        .moveToElementActions(actions, mainPage.dropDownMenuTrigger)
+        .moveToElementAndClickActions(actions, mainPage.specJavaAutomation);
 
     Assert.assertEquals(javaAutoPage.redirectButton.getText(), "Оставить заявку");
 

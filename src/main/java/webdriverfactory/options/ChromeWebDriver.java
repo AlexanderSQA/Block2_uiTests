@@ -9,7 +9,7 @@ public class ChromeWebDriver implements IBrowserOptions {
   @Override
   public WebDriver getDriver() {
     ChromeOptions options = new ChromeOptions();
-    options.addArguments("--kiosk");
+    options.addArguments("--window-size=1280,720");
     options.addArguments("--incognito");
     return new ChromeDriver(options);
 
