@@ -19,6 +19,7 @@ public class BaseTest {
   public void setupWebDriver() throws DriverNotSupported {
     WDFactory wdFactory = new WDFactory();
     driver = wdFactory.getDriver(System.getProperty("browser").toUpperCase(Locale.ROOT));
+    wait = new WebDriverWait(driver, 4);
     actions = new Actions(driver);
   }
 
