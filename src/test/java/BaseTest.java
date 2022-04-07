@@ -7,7 +7,6 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import webdriverfactory.WDFactory;
 
-import java.time.Duration;
 import java.util.Locale;
 
 public class BaseTest {
@@ -20,7 +19,7 @@ public class BaseTest {
   public void setupWebDriver() throws DriverNotSupported {
     WDFactory wdFactory = new WDFactory();
     driver = wdFactory.getDriver(System.getProperty("browser").toUpperCase(Locale.ROOT));
-    wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+    wait = new WebDriverWait(driver, 4);
     actions = new Actions(driver);
   }
 

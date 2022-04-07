@@ -7,7 +7,7 @@ public abstract class BasePage {
 
   protected WebDriver driver;
 
-  private String path;
+  private final String path;
 
   public BasePage(WebDriver driver, String path) {
     this.driver = driver;

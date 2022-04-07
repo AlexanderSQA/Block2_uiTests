@@ -7,7 +7,7 @@ import pages.MainPage;
 public class MainPageOpen_Test extends BaseTest {
 
   @Test
-  public void test() {
+  public void checkOpeningMainPage() {
     MainPage mainPage = new MainPage(driver);
     mainPage.open();
     wait.until(ExpectedConditions.visibilityOfElementLocated(mainPage.mainBanner));

@@ -10,31 +10,45 @@ public class MainPage extends BasePage {
 
   public By mainBanner = By.xpath("//h1[contains(text(), Авторские)]"); //TODO Насколько это корректно в Паблик классе объявлять паблик поле и стоит ли его сделать final?
 
-  @FindBy(xpath = "//div[@class='header2-menu header2-menu_main']//p[@class = 'header2-menu__item-text' and text() = 'Курсы']")
-  public
-      WebElement courseMenuItem;
+  @FindBy(xpath = "//div[contains(@class, 'header2-menu_main')]//p[contains(@class, 'header2-menu__item-text')][text() = 'Курсы']")
+  private WebElement courseMenuItem;
 
-  @FindBy(xpath = "//div[@class = 'header2-menu header2-menu_main']//a[@title = 'Тестирование']")
-  public
-      WebElement testingSubMenuItem;
+  @FindBy(xpath = "//div[contains(@class, 'header2-menu_main')]//a[@title = 'Тестирование']")
+  private WebElement testingSubMenuItem;
 
-  @FindBy(xpath = "//div[@class = 'header2-menu header2-menu_main']//a[@title = 'Тестирование']/div[contains(@class, 'js-menu-subdropdown-trigger')]")
-  public
-      WebElement dropDownMenuTrigger;
+  @FindBy(xpath = "//div[contains(@class, 'header2-menu_main')]//a[@title = 'Тестирование']/div[contains(@class, 'js-menu-subdropdown-trigger')]")
+  private WebElement dropDownMenuTrigger;
 
   @FindBy(xpath = "//a[@title = 'Специализация QA Automation Engineer']")
-  public
-      WebElement specJavaAutomation;
+  private WebElement specJavaAutomation;
 
   public MainPage(WebDriver driver) {
     super(driver, "/");
   }
 
-  public MainPage moveToElementActions(Actions actions,WebElement element){
+
+  public WebElement getCourseMenuItem() {
+    return courseMenuItem;
+  }
+
+  public WebElement getTestingSubMenuItem() {
+    return testingSubMenuItem;
+  }
+
+  public WebElement getDropDownMenuTrigger() {
+    return dropDownMenuTrigger;
+  }
+
+  public WebElement getSpecJavaAutomation() {
+    return specJavaAutomation;
+  }
+
+  public MainPage moveToElementActions(Actions actions, WebElement element) {
     actions.moveToElement(element).perform();
     return this;
   }
-  public MainPage moveToElementAndClickActions(Actions actions, WebElement element){
+
+  public MainPage moveToElementAndClickActions(Actions actions, WebElement element) {
     actions.moveToElement(element).click().build().perform();
     return this;
   }

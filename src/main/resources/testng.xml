@@ -5,7 +5,7 @@
         <classes>
             <class name="MainPageOpen_Test" />
             <class name="FindJavaAutoSpecPage_Test" />
-            <class name="RedirectToAppNonAuthPage_Test" />
+<!--            <class name="RedirectToAppNonAuthPage_Test" />-->
         </classes>
     </test>
 </suite>

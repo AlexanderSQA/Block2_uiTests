@@ -13,7 +13,7 @@
         <maven.compiler.target>15</maven.compiler.target>
 
         <browser>chrome</browser>
-        <webdriver.base.url />
+        <webdriver.base.url/>
     </properties>
 
     <dependencies>
@@ -25,7 +25,7 @@
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
-            <version>4.1.0</version>
+            <version>3.141.59</version>
         </dependency>
         <dependency>
             <groupId>org.testng</groupId>
@@ -90,6 +90,7 @@
                     <systemProperties>
                         <base.url>${webdriver.base.url}</base.url>
                         <browser>${browser}</browser>
+                        <forkCount>0</forkCount>
                     </systemProperties>
                 </configuration>
             </plugin>
