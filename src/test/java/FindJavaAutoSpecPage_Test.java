@@ -5,7 +5,7 @@ import pages.MainPage;
 
 public class FindJavaAutoSpecPage_Test extends BaseTest {
   @Test
-  public void test() {
+  public void navigateToJavaQaSpecPage() {
     MainPage mainPage = new MainPage(driver);
     JavaAutoSpecPage javaAutoPage = new JavaAutoSpecPage(driver);
 

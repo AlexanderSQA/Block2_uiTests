@@ -32,12 +32,15 @@ public class JavaAutoSpecPage extends BasePage {
   }
 
   public AppNonAuthPage clickRedirectButton(Actions actions, WebElement element) {
+    WebDriverWait wait = new WebDriverWait(driver, 4);
+    wait.until(ExpectedConditions.elementToBeClickable(element));
     actions.moveToElement(element).click().build().perform();
     return new AppNonAuthPage(driver);
   }
 
-  public void waitButtonBeVisible(WebElement element) {
+  public void waitPageBeVisible(String path) {
     WebDriverWait wait = new WebDriverWait(driver, 4);
-    wait.until(ExpectedConditions.elementToBeClickable(element));
+    wait.until(ExpectedConditions.urlContains(path));
+
   }
 }

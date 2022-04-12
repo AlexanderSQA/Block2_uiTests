@@ -5,7 +5,7 @@ import pages.JavaAutoSpecPage;
 
 public class RedirectToAppNonAuthPage_Test extends BaseTest {
   @Test
-  public void test() {
+  public void redirectToAuthFormIfNotLogin() {
 
     JavaAutoSpecPage javaAutoSpecPage = new JavaAutoSpecPage(driver);
     AppNonAuthPage appNonAuthPage = new AppNonAuthPage(driver);
@@ -14,9 +14,8 @@ public class RedirectToAppNonAuthPage_Test extends BaseTest {
 
     javaAutoSpecPage
         .clickAppButton(actions, javaAutoSpecPage.getAppButton())
-        .waitButtonBeVisible(javaAutoSpecPage.getRedirectButton());
-    //        .clickRedirectButton(actions, javaAutoSpecPage.getRedirectButton());
-
+        .clickRedirectButton(actions, javaAutoSpecPage.getRedirectButton());
+    javaAutoSpecPage.waitPageBeVisible("/assessment/275/");
 
     Assert.assertEquals(appNonAuthPage.getNoRefTitle().getText(), "СПЕЦИАЛИЗАЦИЯ QA AUTOMATION ENGINEER");
 
