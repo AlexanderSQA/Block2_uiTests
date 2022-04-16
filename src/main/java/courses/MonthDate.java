@@ -1,24 +1,23 @@
 package courses;
 
-import java.time.LocalDate;
 import java.time.Month;
 
 public enum MonthDate {
   JANUARY("января", Month.JANUARY),
-//  FEBRUARY,
-//  МАРТ,
+  FEBRUARY("февраля", Month.FEBRUARY),
+  MARCH("марта", Month.MARCH),
   APRIL("апреля", Month.APRIL),
-//  МАЙ,
-//  ИЮНЬ,
-//  ИЮЛЬ,
-//  АВГУСТ,
-//  СЕНТЯБРЬ,
-//  ОКТЯБРЬ,
-//  НОЯБРЬ,
+  MAY("мая", Month.MAY),
+  JUNE("июня", Month.JUNE),
+  JULY("июля", Month.JULY),
+  AUGUST("августа", Month.AUGUST),
+  SEPTEMBER("сентября", Month.SEPTEMBER),
+  OCTOBER("октября", Month.OCTOBER),
+  NOVEMBER("ноября", Month.NOVEMBER),
   DECEMBER("декабря", Month.DECEMBER);
 
-  private String name;
-  private Month month;
+  private final String name;
+  private final Month month;
 
   MonthDate(String name, Month month) {
     this.name = name;

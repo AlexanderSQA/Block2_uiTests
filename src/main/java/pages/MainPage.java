@@ -1,12 +1,13 @@
 package pages;
 
 import courses.MonthDate;
-import org.bouncycastle.asn1.pkcs.MacData;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.LocalDate;
 import java.time.Month;
@@ -93,21 +94,26 @@ public class MainPage extends BasePage {
     return null;
   }
 
-  public LocalDate minDate(){
+  public LocalDate minDate() {
     return getListOfDate().stream()
         .sorted((LocalDate date1, LocalDate date2) -> {
-         return  date1.compareTo(date2);
-        })
-        .collect(Collectors.toList())
-        .get(0);
-  }
-  public LocalDate maxDate(){
-    return getListOfDate().stream()
-        .sorted((LocalDate date1, LocalDate date2) -> {
-          return  date2.compareTo(date1);
+          return date1.compareTo(date2);
         })
         .collect(Collectors.toList())
         .get(0);
   }
 
+  public LocalDate maxDate() {
+    return getListOfDate().stream()
+        .sorted((LocalDate date1, LocalDate date2) -> {
+          return date2.compareTo(date1);
+        })
+        .collect(Collectors.toList())
+        .get(0);
+  }
+
+  public void waitUntilLessonsDateBeVisible() {
+    WebDriverWait wait = new WebDriverWait(driver, 5);
+    wait.until(ExpectedConditions.visibilityOfAllElements(dateList));
+  }
 }

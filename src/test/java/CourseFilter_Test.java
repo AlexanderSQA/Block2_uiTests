@@ -1,11 +1,13 @@
-import org.openqa.selenium.WebElement;
 import org.testng.annotations.Test;
-
-import java.util.List;
+import pages.MainPage;
 
 public class CourseFilter_Test extends BaseTest {
   @Test
-  public static void findCourse(List<WebElement> elements) {
-
+  public void findCourse() {
+    MainPage mainPage = new MainPage(driver);
+    mainPage.open();
+    mainPage.waitUntilLessonsDateBeVisible();
+    mainPage.minDate();
+    mainPage.maxDate();
   }
 }
