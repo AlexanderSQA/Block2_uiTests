@@ -1,6 +1,7 @@
 package pages;
 
 import courses.MonthDate;
+import exceptions.DateNotFoundInList;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -18,7 +19,7 @@ import java.util.stream.Collectors;
 
 public class MainPage extends BasePage {
 
-  public By mainBanner = By.xpath("//h1[contains(text(), Авторские)]"); //TODO Насколько это корректно в Паблик классе объявлять паблик поле и стоит ли его сделать final?
+  public By mainBanner = By.xpath("//h1[contains(text(), Авторские)]");
 
   @FindBy(xpath = "//div[contains(@class, 'header2-menu_main')]//p[contains(@class, 'header2-menu__item-text')][text() = 'Курсы']")
   private WebElement courseMenuItem;
@@ -78,18 +79,23 @@ public class MainPage extends BasePage {
           if (matcher.find()) {
             int day = Integer.parseInt(matcher.group(1));
             String month = matcher.group(2);
-            return LocalDate.of(LocalDate.now().getYear(), convertMonth(month), day);
+            try {
+              return LocalDate.of(LocalDate.now().getYear(), convertMonth(month), day);
+            } catch (DateNotFoundInList e) {
+              e.printStackTrace();
+            }
           }
           return null;
         })
         .collect(Collectors.toList());
   }
 
-  private Month convertMonth(String mont) {
+  private Month convertMonth(String month) throws DateNotFoundInList {
     for (MonthDate monthDate : MonthDate.values()) {
-      if (monthDate.getName().equalsIgnoreCase(mont)) {
+      if (monthDate.getName().equalsIgnoreCase(month)) {
         return monthDate.getMonth();
       }
+      else throw new DateNotFoundInList("Cant found month value");
     }
     return null;
   }
