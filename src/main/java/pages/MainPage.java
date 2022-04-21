@@ -1,6 +1,8 @@
 package pages;
 
+import courses.FavoriteCourse;
 import courses.MonthDate;
+import courses.SpecializationCourse;
 import exceptions.DateNotFoundInList;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -12,10 +14,12 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.LocalDate;
 import java.time.Month;
+import java.util.Collection;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class MainPage extends BasePage {
 
@@ -33,13 +37,10 @@ public class MainPage extends BasePage {
   @FindBy(xpath = "//a[@title = 'Специализация QA Automation Engineer']")
   private WebElement specJavaAutomation;
 
-  @FindBy(css = ".lessons__new-item-time")
-  private List<WebElement> dateList;
 
   public MainPage(WebDriver driver) {
     super(driver, "/");
   }
-
 
   public WebElement getCourseMenuItem() {
     return courseMenuItem;
@@ -67,8 +68,16 @@ public class MainPage extends BasePage {
     return this;
   }
 
+  public List<WebElement> collectValidDateList() {
+    FavoriteCourse favoriteCourse = new FavoriteCourse(driver);
+    SpecializationCourse specializationCourse = new SpecializationCourse(driver);
+    return Stream.of(favoriteCourse.getDateList(), specializationCourse.getDateList())
+        .flatMap(Collection::stream)
+        .collect(Collectors.toList());
+  }
+
   private List<LocalDate> getListOfDate() {
-    return dateList.stream()
+    return collectValidDateList().stream()
         .map((WebElement element) -> {
           return element.getText().trim();
         })
@@ -94,8 +103,7 @@ public class MainPage extends BasePage {
     for (MonthDate monthDate : MonthDate.values()) {
       if (monthDate.getName().equalsIgnoreCase(month)) {
         return monthDate.getMonth();
-      }
-      else throw new DateNotFoundInList("Cant found month value");
+      } else throw new DateNotFoundInList("Cant found valid month value");
     }
     return null;
   }
@@ -119,7 +127,7 @@ public class MainPage extends BasePage {
   }
 
   public void waitUntilLessonsDateBeVisible() {
-    WebDriverWait wait = new WebDriverWait(driver, 5);
-    wait.until(ExpectedConditions.visibilityOfAllElements(dateList));
+    WebDriverWait wait = new WebDriverWait(driver, 20);
+    wait.until(ExpectedConditions.visibilityOfAllElements(collectValidDateList()));
   }
 }
