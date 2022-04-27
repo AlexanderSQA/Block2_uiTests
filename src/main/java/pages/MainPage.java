@@ -3,7 +3,6 @@ package pages;
 import courses.FavoriteCourse;
 import courses.MonthDate;
 import courses.SpecializationCourse;
-import exceptions.DateNotFoundInList;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -11,7 +10,6 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
 import java.time.LocalDate;
 import java.time.Month;
 import java.util.Collection;
@@ -68,7 +66,7 @@ public class MainPage extends BasePage {
     return this;
   }
 
-  public List<WebElement> collectValidDateList() {
+  private List<WebElement> collectValidDateList() {
     FavoriteCourse favoriteCourse = new FavoriteCourse(driver);
     SpecializationCourse specializationCourse = new SpecializationCourse(driver);
     return Stream.of(favoriteCourse.getDateList(), specializationCourse.getDateList())
@@ -81,29 +79,25 @@ public class MainPage extends BasePage {
         .map((WebElement element) -> {
           return element.getText().trim();
         })
-        .filter((String missDate) -> !missDate.contains("О дате старта будет объявлено позже"))
+        .filter((String missDate) -> !missDate.contains("О дате старта будет объявлено позже") && !missDate.matches("В\\s+[А-Яа-я]+\\s+.*"))
         .map((String dateStr) -> {
           Pattern pattern = Pattern.compile("С?\\s*(\\d+)\\s+([А-Яа-я]+)");
           Matcher matcher = pattern.matcher(dateStr);
           if (matcher.find()) {
             int day = Integer.parseInt(matcher.group(1));
             String month = matcher.group(2);
-            try {
-              return LocalDate.of(LocalDate.now().getYear(), convertMonth(month), day);
-            } catch (DateNotFoundInList e) {
-              e.printStackTrace();
-            }
+            return LocalDate.of(LocalDate.now().getYear(), convertMonth(month), day);
           }
           return null;
         })
         .collect(Collectors.toList());
   }
 
-  private Month convertMonth(String month) throws DateNotFoundInList {
+  private Month convertMonth(String month) {
     for (MonthDate monthDate : MonthDate.values()) {
       if (monthDate.getName().equalsIgnoreCase(month)) {
         return monthDate.getMonth();
-      } else throw new DateNotFoundInList("Cant found valid month value");
+      }
     }
     return null;
   }

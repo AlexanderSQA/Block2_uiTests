@@ -1,0 +1,26 @@
+#Wed Apr 27 23:14:18 MSK 2022
+D\:\\Block_2_listeners\\uiTests\\src\\main\\java\\webdriverfactory\\options\\IBrowserOptions.java=1648668879578
+D\:\\Block_2_listeners\\uiTests\\src\\test\\java\\MainPageOpen_Test.java=1650094745948
+D\:\\Block_2_listeners\\uiTests\\src\\main\\java\\webdriverfactory\\options\\FirefoxWebDriver.java=1648669672954
+D\:\\Block_2_listeners\\uiTests\\src\\main\\java\\pages\\MainPage.java=1651090349982
+D\:\\Block_2_listeners\\uiTests\\src\\main\\java\\webdriverfactory\\WDFactory.java=1649357266554
+D\:\\Block_2_listeners\\uiTests\\src\\main\\java\\listeners\\MouseListeners.java=1649360850438
+D\:\\Block_2_listeners\\uiTests\\src\\test\\java\\CourseFilter_Test.java=1651090078618
+D\:\\Block_2_listeners\\uiTests\\src\\main\\java\\webdriverfactory\\options\\OperaWebDriver.java=1648669712856
+D\:\\Block_2_listeners\\uiTests\\src\\main\\java\\webdriverfactory\\options\\ChromeWebDriver.java=1649343130747
+D\:\\Block_2_listeners\\uiTests\\src\\main\\java\\courses\\SpecializationCourse.java=1650535972077
+D\:\\Block_2_listeners\\uiTests\\src\\main\\java\\waiters\\IWaitForConditions.java=1649358993920
+D\:\\Block_2_listeners\\uiTests\\src\\main\\java\\courses\\MonthDate.java=1650095272176
+D\:\\Block_2_listeners\\uiTests\\src\\main\\java\\waiters\\StandartWaiter.java=1649360295848
+D\:\\Block_2_listeners\\uiTests\\src\\test\\java\\RedirectToAppNonAuthPage_Test.java=1649789015471
+configuration*?=6C658427E2154B9A02B2FBC987EA1B58CA87A70E
+D\:\\Block_2_listeners\\uiTests\\src\\test\\java\\FindJavaAutoSpecPage_Test.java=1649789015462
+D\:\\Block_2_listeners\\uiTests\\src\\main\\java\\pages\\JavaAutoSpecPage.java=1649706314001
+D\:\\Block_2_listeners\\uiTests\\src\\main\\java\\courses\\FavoriteCourse.java=1650536545829
+D\:\\Block_2_listeners\\uiTests\\src\\main\\java\\pages\\BasePage.java=1649357815071
+D\:\\Block_2_listeners\\uiTests\\src\\main\\java\\pages\\AppNonAuthPage.java=1649358185818
+D\:\\Block_2_listeners\\uiTests\\src\\main\\java\\exceptions\\DateNotFoundInList.java=1650133616038
+D\:\\Block_2_listeners\\uiTests\\src\\main\\java\\webdriverfactory\\Browsers.java=1648649382555
+D\:\\Block_2_listeners\\uiTests\\src\\test\\java\\BaseTest.java=1649361638218
+D\:\\Block_2_listeners\\uiTests\\src\\main\\java\\exceptions\\DriverNotSupported.java=1648649382555
+D\:\\Block_2_listeners\\uiTests\\src\\test\\resources\\testng-platform.properties=1650628879128
