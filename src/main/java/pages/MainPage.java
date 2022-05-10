@@ -10,6 +10,7 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.springframework.beans.factory.annotation.Autowired;
 import java.time.LocalDate;
 import java.time.Month;
 import java.util.Collection;
@@ -19,7 +20,7 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class MainPage extends BasePage {
+public class MainPage extends BasePage<MainPage> {
 
   public By mainBanner = By.xpath("//h1[contains(text(), Авторские)]");
 
@@ -35,20 +36,23 @@ public class MainPage extends BasePage {
   @FindBy(xpath = "//a[@title = 'Специализация QA Automation Engineer']")
   private WebElement specJavaAutomation;
 
-
+  @Autowired
   public MainPage(WebDriver driver) {
     super(driver, "/");
   }
 
   public WebElement getCourseMenuItem() {
-    return courseMenuItem;
+    actions.moveToElement(courseMenuItem).perform();
+    return  courseMenuItem;
   }
 
   public WebElement getTestingSubMenuItem() {
+    actions.moveToElement(testingSubMenuItem).perform();
     return testingSubMenuItem;
   }
 
   public WebElement getDropDownMenuTrigger() {
+    actions.moveToElement(dropDownMenuTrigger).perform();
     return dropDownMenuTrigger;
   }
 
@@ -61,8 +65,8 @@ public class MainPage extends BasePage {
     return this;
   }
 
-  public MainPage moveToElementAndClickActions(Actions actions, WebElement element) {
-    actions.moveToElement(element).click().build().perform();
+  public MainPage moveToElementAndClickActions() {
+    actions.moveToElement(specJavaAutomation).click().build().perform();
     return this;
   }
 
@@ -123,5 +127,12 @@ public class MainPage extends BasePage {
   public void waitUntilLessonsDateBeVisible() {
     WebDriverWait wait = new WebDriverWait(driver, 20);
     wait.until(ExpectedConditions.visibilityOfAllElements(collectValidDateList()));
+  }
+
+  public void checkButtonTitleOnQaSpecPage() {
+    getCourseMenuItem()
+        .getTestingSubMenuItem()
+        .getDropDownMenuTrigger()
+        .moveToElementAndClickActions();
   }
 }
