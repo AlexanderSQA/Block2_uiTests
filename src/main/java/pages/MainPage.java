@@ -6,11 +6,10 @@ import courses.SpecializationCourse;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.testng.Assert;
 import java.time.LocalDate;
 import java.time.Month;
 import java.util.Collection;
@@ -22,51 +21,17 @@ import java.util.stream.Stream;
 
 public class MainPage extends BasePage<MainPage> {
 
-  public By mainBanner = By.xpath("//h1[contains(text(), Авторские)]");
-
-  @FindBy(xpath = "//div[contains(@class, 'header2-menu_main')]//p[contains(@class, 'header2-menu__item-text')][text() = 'Курсы']")
-  private WebElement courseMenuItem;
-
-  @FindBy(xpath = "//div[contains(@class, 'header2-menu_main')]//a[@title = 'Тестирование']")
-  private WebElement testingSubMenuItem;
-
-  @FindBy(xpath = "//div[contains(@class, 'header2-menu_main')]//a[@title = 'Тестирование']/div[contains(@class, 'js-menu-subdropdown-trigger')]")
-  private WebElement dropDownMenuTrigger;
-
-  @FindBy(xpath = "//a[@title = 'Специализация QA Automation Engineer']")
-  private WebElement specJavaAutomation;
+  private By mainBanner = By.xpath("//h1[contains(text(), Авторские)]");
 
   @Autowired
   public MainPage(WebDriver driver) {
     super(driver, "/");
   }
 
-  public WebElement getCourseMenuItem() {
-    actions.moveToElement(courseMenuItem).perform();
-    return  courseMenuItem;
-  }
 
-  public WebElement getTestingSubMenuItem() {
-    actions.moveToElement(testingSubMenuItem).perform();
-    return testingSubMenuItem;
-  }
-
-  public WebElement getDropDownMenuTrigger() {
-    actions.moveToElement(dropDownMenuTrigger).perform();
-    return dropDownMenuTrigger;
-  }
-
-  public WebElement getSpecJavaAutomation() {
-    return specJavaAutomation;
-  }
-
-  public MainPage moveToElementActions(Actions actions, WebElement element) {
-    actions.moveToElement(element).perform();
-    return this;
-  }
-
-  public MainPage moveToElementAndClickActions() {
-    actions.moveToElement(specJavaAutomation).click().build().perform();
+  public MainPage checkTextOnBanner(String expectedBannerText) {
+    wait.until(ExpectedConditions.visibilityOfElementLocated(mainBanner));
+    Assert.assertEquals(driver.findElement(mainBanner).getText(), expectedBannerText);
     return this;
   }
 
@@ -129,10 +94,4 @@ public class MainPage extends BasePage<MainPage> {
     wait.until(ExpectedConditions.visibilityOfAllElements(collectValidDateList()));
   }
 
-  public void checkButtonTitleOnQaSpecPage() {
-    getCourseMenuItem()
-        .getTestingSubMenuItem()
-        .getDropDownMenuTrigger()
-        .moveToElementAndClickActions();
-  }
 }
