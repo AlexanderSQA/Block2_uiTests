@@ -1,13 +1,11 @@
 import data.PageData;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.testng.annotations.Test;
-import pages.MainPage;
 import pages.SpecPage;
 
 public class RedirectToAppNonAuthPage_Test extends BaseTest {
-  ApplicationContext context = new AnnotationConfigApplicationContext(MainPage.class);
-  private SpecPage specPage = context.getBean(SpecPage.class);
+  @Autowired
+  private SpecPage specPage;
 
 
   @Test

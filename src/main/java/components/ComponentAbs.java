@@ -8,9 +8,9 @@ public abstract class ComponentAbs<T> {
   protected WebDriver driver;
   protected Actions actions;
 
-  public ComponentAbs(WebDriver driver, Actions actions) {
+  public ComponentAbs(WebDriver driver) {
     this.driver = driver;
-    this.actions = actions;
+    this.actions = new Actions(driver);
     PageFactory.initElements(driver, this);
   }
 }

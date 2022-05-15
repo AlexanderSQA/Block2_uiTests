@@ -1,11 +1,10 @@
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.testng.annotations.Test;
 import pages.MainPage;
 
 public class MainPageOpen_Test extends BaseTest {
-  ApplicationContext context = new AnnotationConfigApplicationContext(MainPage.class);
-  private MainPage mainPage = context.getBean(MainPage.class);
+  @Autowired
+  private MainPage mainPage;
 
   @Test
   public void checkOpeningMainPage() {

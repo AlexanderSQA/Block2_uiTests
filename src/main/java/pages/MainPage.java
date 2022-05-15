@@ -1,5 +1,7 @@
 package pages;
 
+import static io.cucumber.spring.CucumberTestContext.SCOPE_CUCUMBER_GLUE;
+
 import courses.FavoriteCourse;
 import courses.MonthDate;
 import courses.SpecializationCourse;
@@ -8,6 +10,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
 import support.SpringScoped;
 import java.time.LocalDate;
 import java.time.Month;
@@ -18,6 +22,8 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+@Component
+@Scope(SCOPE_CUCUMBER_GLUE)
 public class MainPage extends BasePage<MainPage> {
 
   @Autowired

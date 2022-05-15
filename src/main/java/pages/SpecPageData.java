@@ -1,12 +1,12 @@
 package pages;
 
-public enum SpecData {
+public enum SpecPageData {
   QA("qa-auto-java-specialization/");
 
   private final String url;
 
 
-  SpecData(String url) {
+  SpecPageData(String url) {
     this.url = url;
   }
 

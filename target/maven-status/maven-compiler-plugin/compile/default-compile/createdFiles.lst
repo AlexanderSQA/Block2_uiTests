@@ -8,9 +8,8 @@ pages\AppNonAuthPage.class
 pages\MainPage.class
 courses\MonthDate.class
 courses\SpecializationCourse.class
-pages\ModulePage.class
-pages\SpecData.class
 data\PageData.class
+pages\SpecPageData.class
 waiters\StandartWaiter.class
 courses\FavoriteCourse.class
 data\SpecData.class
