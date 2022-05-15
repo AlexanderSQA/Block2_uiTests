@@ -25,10 +25,9 @@ public class MainPage extends BasePage<MainPage> {
     super(springScoped, "/");
   }
 
-
   private List<WebElement> collectValidDateList() {
-    FavoriteCourse favoriteCourse = new FavoriteCourse(driver);
-    SpecializationCourse specializationCourse = new SpecializationCourse(driver);
+    FavoriteCourse favoriteCourse = new FavoriteCourse(springScoped);
+    SpecializationCourse specializationCourse = new SpecializationCourse(springScoped);
     return Stream.of(favoriteCourse.getDateList(), specializationCourse.getDateList())
         .flatMap(Collection::stream)
         .collect(Collectors.toList());
@@ -81,7 +80,7 @@ public class MainPage extends BasePage<MainPage> {
   }
 
   public void waitUntilLessonsDateBeVisible() {
-    WebDriverWait wait = new WebDriverWait(driver, 20);
+    WebDriverWait wait = new WebDriverWait(springScoped.driver, 20);
     wait.until(ExpectedConditions.visibilityOfAllElements(collectValidDateList()));
   }
 

@@ -1,5 +1,6 @@
 webdriverfactory\WDFactory$1.class
 pages\BasePage.class
+support\SpringScoped.class
 components\MainMenuComponent.class
 pages\SpecPage.class
 components\ComponentAbs.class

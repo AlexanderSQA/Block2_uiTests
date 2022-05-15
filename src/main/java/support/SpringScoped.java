@@ -14,7 +14,5 @@ public class SpringScoped {
   public WebDriver driver = new WDFactory().getDriver(System.getProperty("browser").toUpperCase(Locale.ROOT));
   public Wait wait = new WebDriverWait(driver, 4);
   public Actions actions = new Actions(driver);
-  PageFactory.initElements(driver, this);
 
-
-}
+  }

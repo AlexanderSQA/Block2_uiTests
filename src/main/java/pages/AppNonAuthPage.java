@@ -17,7 +17,7 @@ public class AppNonAuthPage extends BasePage<AppNonAuthPage> {
   }
 
   public WebElement getNoRefTitle() {
-    return driver.findElement(By.xpath(String.format("//div[@class = 'assessment-title__main_new']/a[contains(text(), %s)]", id)));
+    return springScoped.driver.findElement(By.xpath(String.format("//div[@class = 'assessment-title__main_new']/a[contains(text(), %s)]", id)));
   }
 
   public AppNonAuthPage checkNonAuthPageTitle() {

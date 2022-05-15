@@ -16,7 +16,7 @@ public class BaseTest {
   protected org.apache.logging.log4j.Logger logger = LogManager.getLogger(BaseTest.class);
 
   @BeforeMethod
-  public void setupWebDriver() throws DriverNotSupported {
+  public void setupWebDriver() {
     WDFactory wdFactory = new WDFactory();
     driver = wdFactory.getDriver(System.getProperty("browser").toUpperCase(Locale.ROOT));
     wait = new WebDriverWait(driver, 4);
