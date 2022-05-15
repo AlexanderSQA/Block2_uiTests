@@ -3,13 +3,12 @@ package pages;
 import courses.FavoriteCourse;
 import courses.MonthDate;
 import courses.SpecializationCourse;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.testng.Assert;
+import support.SpringScoped;
 import java.time.LocalDate;
 import java.time.Month;
 import java.util.Collection;
@@ -21,19 +20,11 @@ import java.util.stream.Stream;
 
 public class MainPage extends BasePage<MainPage> {
 
-  private By mainBanner = By.xpath("//h1[contains(text(), Авторские)]");
-
   @Autowired
-  public MainPage(WebDriver driver) {
-    super(driver, "/");
+  public MainPage(SpringScoped springScoped) {
+    super(springScoped, "/");
   }
 
-
-  public MainPage checkTextOnBanner(String expectedBannerText) {
-    wait.until(ExpectedConditions.visibilityOfElementLocated(mainBanner));
-    Assert.assertEquals(driver.findElement(mainBanner).getText(), expectedBannerText);
-    return this;
-  }
 
   private List<WebElement> collectValidDateList() {
     FavoriteCourse favoriteCourse = new FavoriteCourse(driver);

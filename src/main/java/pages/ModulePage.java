@@ -8,11 +8,11 @@ public class ModulePage {
 
   @Bean
   public MainPage getMainPage() {
-    return new MainPage(getMainPage().driver);
+    return new MainPage(getMainPage().springScoped);
   }
 
   @Bean
   public SpecPage getSpecPage(){
-    return new SpecPage(getSpecPage().driver, SpecData.valueOf("URL"));
+    return new SpecPage(getSpecPage().springScoped, SpecData.valueOf("URL"));
   }
 }
