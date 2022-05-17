@@ -1,9 +1,0 @@
-com\otus\Runner_Test.class
-com\otus\steps\CucumberSpringConfiguration.class
-RedirectToAppNonAuthPage_Test.class
-CourseFilter_Test.class
-com\otus\steps\component\NavigationMenuComponentSteps.class
-MainPageOpen_Test.class
-com\otus\steps\MainPageSteps.class
-FindSpecPage_Test.class
-BaseTest.class

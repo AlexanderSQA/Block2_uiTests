@@ -14,4 +14,7 @@ public class SpringScoped {
   public WebDriverWait wait = new WebDriverWait(driver, 4);
   public Actions actions = new Actions(driver);
 
+  public SpringScoped() {
+  }
 }
+
