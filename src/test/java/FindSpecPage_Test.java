@@ -16,7 +16,7 @@ public class FindSpecPage_Test extends BaseTest {
   public void navigateToJavaQaSpecPage() {
 
     mainPage.open();
-    component.checkOpenSpecPage(SpecData.QA_AUTOMATION.getSubMenuName());
+    component.checkOpenSpecPage(SpecData.QA_AUTOMATION);
 
     specPage.checkRedirButtonText("Оставить заявку");
 
