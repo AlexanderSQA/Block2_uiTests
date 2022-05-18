@@ -14,13 +14,10 @@ public class MainMenuComponent extends ComponentAbs<MainMenuComponent> {
   @FindBy(xpath = "//div[contains(@class, 'header2-menu_main')]//p[contains(@class, 'header2-menu__item-text')][text() = 'Курсы']")
   private WebElement courseMenuItem;
 
-//  @FindBy(xpath = "//div[contains(@class, 'header2-menu_main')]//a[@title = 'Тестирование']")
   private String testingSubMenuItem = "//div[contains(@class, 'header2-menu_main')]//a[@title = '%s']";
 
-//  @FindBy(xpath = "//div[contains(@class, 'header2-menu_main')]//a[@title = 'Тестирование']/div[contains(@class, 'js-menu-subdropdown-trigger')]")
   private String dropDownMenuTrigger = "//div[contains(@class, 'header2-menu_main')]//a[@title = '%s']/div[contains(@class, 'js-menu-subdropdown-trigger')]";
 
-//  @FindBy(xpath = "//a[@title = 'Специализация QA Automation Engineer']")
   private String specializationPage = "//a[@title = '%s']";
 
   @Autowired
@@ -30,8 +27,8 @@ public class MainMenuComponent extends ComponentAbs<MainMenuComponent> {
 
   public MainMenuComponent checkOpenSpecPage(SpecData specData) {
     actions.moveToElement(courseMenuItem)
-        .moveToElement(driver.findElement(By.xpath(String.format(testingSubMenuItem,specData.getTypeData().getName()))))
-        .moveToElement(driver.findElement(By.xpath(String.format(dropDownMenuTrigger,specData.getTypeData().getName()))))
+        .moveToElement(driver.findElement(By.xpath(String.format(testingSubMenuItem, specData.getTypeData().getName()))))
+        .moveToElement(driver.findElement(By.xpath(String.format(dropDownMenuTrigger, specData.getTypeData().getName()))))
         .moveToElement(driver.findElement(By.xpath(String.format(specializationPage, specData.getSubMenuName())))).click().build().perform();
     return this;
   }
