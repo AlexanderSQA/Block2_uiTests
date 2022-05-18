@@ -19,7 +19,8 @@ import java.util.Locale;
 public class MainPageSteps {
 
   ApplicationContext context = new AnnotationConfigApplicationContext(MainPage.class);
-  private WebDriver driver = null;
+  @Autowired
+  private WebDriver driver;
 
   @Autowired
   private MainPage mainPage;
@@ -27,7 +28,7 @@ public class MainPageSteps {
 
   @Before
 
-  public void initDriver() throws DriverNotSupported {
+  public void initDriver() {
     driver = new WDFactory().getDriver(System.getProperty("browser").toUpperCase(Locale.ROOT));
   }
 

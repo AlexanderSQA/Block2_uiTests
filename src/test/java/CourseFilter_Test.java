@@ -5,6 +5,8 @@ import pages.MainPage;
 public class CourseFilter_Test extends BaseTest {
   @Autowired
   private MainPage mainPage;
+  //  ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("CourseFilter_Test.java");
+  //  MainPage mainPage = context.getBean(MainPage.class);
 
   @Test
   public void findCourse() {

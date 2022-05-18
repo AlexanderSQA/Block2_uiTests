@@ -3,7 +3,6 @@ package support;
 import io.cucumber.spring.ScenarioScope;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import webdriverfactory.WDFactory;
 import java.util.Locale;
