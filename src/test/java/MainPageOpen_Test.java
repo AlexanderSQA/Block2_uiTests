@@ -10,6 +10,6 @@ public class MainPageOpen_Test extends BaseTest {
   @Test
   public void checkOpeningMainPage() {
     mainPage.open()
-        .checkTextOnBanner("Авторские онлайн‑курсы для профессионалов");
+        .mainBannerShouldBeHasHeader("Авторские онлайн‑курсы для профессионалов");
   }
 }

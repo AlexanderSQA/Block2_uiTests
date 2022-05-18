@@ -23,18 +23,10 @@ import java.util.stream.Stream;
 @Component
 public class MainPage extends BasePage<MainPage> {
 
-  private By mainBanner = By.xpath("//h1[contains(text(), Авторские)]");
 
   @Autowired
   public MainPage(WebDriver driver) {
     super(driver, "/");
-  }
-
-
-  public MainPage checkTextOnBanner(String expectedBannerText) {
-    wait.until(ExpectedConditions.visibilityOfElementLocated(mainBanner));
-    Assert.assertEquals(driver.findElement(mainBanner).getText(), expectedBannerText);
-    return this;
   }
 
   private List<WebElement> collectValidDateList() {
