@@ -1,8 +1,0 @@
--------------------------------------------------------------------------------
-Test set: TestSuite
--------------------------------------------------------------------------------
-Tests run: 1, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 3.434 s <<< FAILURE! - in TestSuite
-CourseFilter_Test.findCourse  Time elapsed: 0.002 s  <<< FAILURE!
-java.lang.NullPointerException: Cannot invoke "pages.MainPage.open()" because "this.mainPage" is null
-	at CourseFilter_Test.findCourse(CourseFilter_Test.java:14)
-
