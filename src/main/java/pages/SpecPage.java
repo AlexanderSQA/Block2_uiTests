@@ -35,7 +35,7 @@ public class SpecPage extends BasePage<SpecPage> {
   public AppNonAuthPage clickRedirectButton(PageData pageData) {
     wait.until(ExpectedConditions.elementToBeClickable(redirectButton));
     actions.moveToElement(redirectButton).click().build().perform();
-    return new AppNonAuthPage(driver, pageData);
+    return new AppNonAuthPage(driver);
   }
 
 }

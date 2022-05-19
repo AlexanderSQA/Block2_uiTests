@@ -9,5 +9,6 @@
 
     <context:component-scan base-package="pages"/>
     <context:component-scan base-package="components"/>
+    <context:component-scan base-package="webdriverfactory"/>
 
 </beans>
