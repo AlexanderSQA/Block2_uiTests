@@ -1,2 +1,0 @@
-<?xml version='1.0' encoding='UTF-8'?>
-<BugCollection version='3.0.1' threshold='low' effort='max'><Error></Error><Project><SrcDir>D:\Block_2_listeners\uiTests\src\main\java</SrcDir><SrcDir>D:\Block_2_listeners\uiTests\target\generated-sources\annotations</SrcDir><SrcDir>D:\Block_2_listeners\uiTests\src\test\java</SrcDir></Project></BugCollection>
