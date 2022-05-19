@@ -1,3 +1,4 @@
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -10,6 +11,7 @@ public class CourseFilter_Test extends BaseTest {
   private MainPage mainPage = context.getBean(MainPage.class);
 
   @Test
+
   public void findCourse() {
 
     mainPage.open();
