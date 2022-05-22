@@ -1,3 +1,5 @@
+package ru.otus.tests;
+
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.testng.annotations.Test;
 import pages.MainPage;

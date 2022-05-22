@@ -1,3 +1,5 @@
+package ru.otus.tests;
+
 import data.PageData;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -6,7 +8,7 @@ import pages.MainPage;
 import pages.SpecPage;
 
 public class RedirectToAppNonAuthPage_Test extends BaseTest {
-  ApplicationContext context = new AnnotationConfigApplicationContext(MainPage.class);
+  AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(MainPage.class);
   private SpecPage specPage = context.getBean(SpecPage.class);
 
 

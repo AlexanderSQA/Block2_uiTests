@@ -3,10 +3,10 @@
 <suite name="Suite1" verbose="1" >
     <test name="Nopackage" >
         <classes>
-<!--            <class name="MainPageOpen_Test" />-->
-<!--            <class name="FindSpecPage_Test" />-->
-            <class name="CourseFilter_Test" />
-<!--            <class name="RedirectToAppNonAuthPage_Test" />-->
+<!--            <class name="ru.otus.tests.MainPageOpen_Test" />-->
+<!--            <class name="ru.otus.tests.FindSpecPage_Test" />-->
+            <class name="ru.otus.tests.CourseFilter_Test" />
+<!--            <class name="ru.otus.tests.RedirectToAppNonAuthPage_Test" />-->
         </classes>
     </test>
 </suite>

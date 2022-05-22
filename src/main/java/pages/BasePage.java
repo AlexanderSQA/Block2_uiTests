@@ -3,11 +3,9 @@ package pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.testng.Assert;
 
@@ -19,10 +17,9 @@ public abstract class BasePage<T> {
   protected WebDriverWait wait;
   protected Actions actions;
 
-  @FindBy(tagName = "h1")
-  private By mainBanner;
+  private By mainBanner = By.tagName("h1");
 
-  @Autowired
+
   public BasePage(WebDriver driver, String path) {
     this.driver = driver;
     this.path = path;

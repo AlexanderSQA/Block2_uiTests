@@ -1,3 +1,5 @@
+package ru.otus.tests;
+
 import components.MainMenuComponent;
 import data.SpecData;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
