@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.testng.Assert;
 
-@Component
+
 public class SpecPage extends BasePage<SpecPage> {
   @FindBy(xpath = "//a[contains(@class, 'tn-atom')]/img[@class='tn-atom__img']")
   private WebElement appButton;

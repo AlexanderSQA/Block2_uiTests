@@ -8,11 +8,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.testng.Assert;
 
-@Component
+
 public class AppNonAuthPage extends BasePage<AppNonAuthPage> {
   private String id;
 
-  @Autowired
+
   public AppNonAuthPage(WebDriver driver, PageData page) {
     super(driver, "/assessment/" + page.getId());
     id = page.getId();

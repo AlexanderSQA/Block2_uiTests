@@ -9,7 +9,7 @@ import org.openqa.selenium.support.FindBy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-@Component
+
 public class MainMenuComponent extends ComponentAbs<MainMenuComponent> {
   @FindBy(xpath = "//div[contains(@class, 'header2-menu_main')]//p[contains(@class, 'header2-menu__item-text')][text() = 'Курсы']")
   private WebElement courseMenuItem;
@@ -20,7 +20,7 @@ public class MainMenuComponent extends ComponentAbs<MainMenuComponent> {
 
   private String specializationPage = "//a[@title = '%s']";
 
-  @Autowired
+
   public MainMenuComponent(WebDriver driver, Actions actions) {
     super(driver, actions);
   }

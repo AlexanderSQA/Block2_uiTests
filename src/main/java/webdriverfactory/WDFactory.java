@@ -3,11 +3,14 @@ package webdriverfactory;
 import exceptions.DriverNotSupported;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import listeners.MouseListeners;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.events.EventFiringWebDriver;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import webdriverfactory.options.ChromeWebDriver;
 import webdriverfactory.options.FirefoxWebDriver;
 import webdriverfactory.options.OperaWebDriver;
+import java.util.Locale;
 
 @Component
 public class WDFactory {

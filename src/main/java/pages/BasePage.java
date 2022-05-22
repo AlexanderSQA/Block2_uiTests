@@ -7,9 +7,11 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.testng.Assert;
 
-
+@Component
 public abstract class BasePage<T> {
 
   private final String path;
@@ -20,6 +22,7 @@ public abstract class BasePage<T> {
   @FindBy(tagName = "h1")
   private By mainBanner;
 
+  @Autowired
   public BasePage(WebDriver driver, String path) {
     this.driver = driver;
     this.path = path;
