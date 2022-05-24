@@ -1,37 +1,36 @@
 package webdriverfactory;
 
-import exceptions.DriverNotSupported;
+import exceptions.DriverNotSupportedException;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import listeners.MouseListeners;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.opera.OperaDriver;
 import org.openqa.selenium.support.events.EventFiringWebDriver;
 import webdriverfactory.options.ChromeWebDriver;
 import webdriverfactory.options.FirefoxWebDriver;
 import webdriverfactory.options.OperaWebDriver;
+import java.util.Locale;
 
 public class WDFactory {
 
-  public EventFiringWebDriver getDriver(String browserName) throws DriverNotSupported {
+  public EventFiringWebDriver getDriver() {
+    EventFiringWebDriver driver;
 
-    switch (Browsers.valueOf(browserName)) {
-      case CHROME:
+    switch (System.getProperty("browser").trim().toUpperCase(Locale.ROOT)) {
+      case "CHROME":
         WebDriverManager.chromedriver().setup();
-        EventFiringWebDriver driver = new EventFiringWebDriver(new ChromeWebDriver().getDriver());
-        driver.register(new MouseListeners());
-        return driver;
-      case OPERA:
+        driver = new EventFiringWebDriver(new ChromeWebDriver().getDriver());
+        break;
+      case "OPERA":
         WebDriverManager.operadriver().setup();
         driver = new EventFiringWebDriver(new OperaWebDriver().getDriver());
-        driver.register(new MouseListeners());
-        return driver;
-      case FIREFOX:
+        break;
+      case "FIREFOX":
         WebDriverManager.operadriver().setup();
         driver = new EventFiringWebDriver(new FirefoxWebDriver().getDriver());
-        driver.register(new MouseListeners());
-        return driver;
+        break;
       default:
-        throw new DriverNotSupported("Unexpected value: " + browserName);
+        throw new DriverNotSupportedException("Unexpected browser");
     }
+    driver.register(new MouseListeners());
+    return driver;
   }
 }

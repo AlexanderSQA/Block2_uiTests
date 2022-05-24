@@ -1,4 +1,4 @@
-import exceptions.DriverNotSupported;
+import exceptions.DriverNotSupportedException;
 import org.apache.logging.log4j.LogManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.interactions.Actions;
@@ -16,9 +16,9 @@ public class BaseTest {
   protected org.apache.logging.log4j.Logger logger = LogManager.getLogger(BaseTest.class);
 
   @BeforeMethod
-  public void setupWebDriver() throws DriverNotSupported {
+  public void setupWebDriver() {
     WDFactory wdFactory = new WDFactory();
-    driver = wdFactory.getDriver(System.getProperty("browser").toUpperCase(Locale.ROOT));
+    driver = wdFactory.getDriver();
     wait = new WebDriverWait(driver, 4);
     actions = new Actions(driver);
   }
