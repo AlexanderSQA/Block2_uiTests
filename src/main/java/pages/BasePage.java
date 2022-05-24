@@ -6,6 +6,7 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.testng.Assert;
 
@@ -19,7 +20,7 @@ public abstract class BasePage<T> {
 
   private By mainBanner = By.tagName("h1");
 
-
+@Autowired
   public BasePage(WebDriver driver, String path) {
     this.driver = driver;
     this.path = path;
