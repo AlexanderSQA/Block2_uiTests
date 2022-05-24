@@ -1,6 +1,5 @@
 package ru.otus.tests;
 
-
 import org.apache.logging.log4j.LogManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.interactions.Actions;
