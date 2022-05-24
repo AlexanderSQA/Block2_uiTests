@@ -3,15 +3,12 @@ package pages;
 import courses.FavoriteCourse;
 import courses.MonthDate;
 import courses.SpecializationCourse;
-import exceptions.DateNotFoundInList;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import java.time.LocalDate;
 import java.time.Month;
 import java.util.Collection;
@@ -21,54 +18,14 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class MainPage extends BasePage {
 
-  public By mainBanner = By.xpath("//h1[contains(text(), Авторские)]");
-
-  @FindBy(xpath = "//div[contains(@class, 'header2-menu_main')]//p[contains(@class, 'header2-menu__item-text')][text() = 'Курсы']")
-  private WebElement courseMenuItem;
-
-  @FindBy(xpath = "//div[contains(@class, 'header2-menu_main')]//a[@title = 'Тестирование']")
-  private WebElement testingSubMenuItem;
-
-  @FindBy(xpath = "//div[contains(@class, 'header2-menu_main')]//a[@title = 'Тестирование']/div[contains(@class, 'js-menu-subdropdown-trigger')]")
-  private WebElement dropDownMenuTrigger;
-
-  @FindBy(xpath = "//a[@title = 'Специализация QA Automation Engineer']")
-  private WebElement specJavaAutomation;
-
+public class MainPage extends BasePage<MainPage> {
 
   public MainPage(WebDriver driver) {
     super(driver, "/");
   }
 
-  public WebElement getCourseMenuItem() {
-    return courseMenuItem;
-  }
-
-  public WebElement getTestingSubMenuItem() {
-    return testingSubMenuItem;
-  }
-
-  public WebElement getDropDownMenuTrigger() {
-    return dropDownMenuTrigger;
-  }
-
-  public WebElement getSpecJavaAutomation() {
-    return specJavaAutomation;
-  }
-
-  public MainPage moveToElementActions(Actions actions, WebElement element) {
-    actions.moveToElement(element).perform();
-    return this;
-  }
-
-  public MainPage moveToElementAndClickActions(Actions actions, WebElement element) {
-    actions.moveToElement(element).click().build().perform();
-    return this;
-  }
-
-  public List<WebElement> collectValidDateList() {
+  private List<WebElement> collectValidDateList() {
     FavoriteCourse favoriteCourse = new FavoriteCourse(driver);
     SpecializationCourse specializationCourse = new SpecializationCourse(driver);
     return Stream.of(favoriteCourse.getDateList(), specializationCourse.getDateList())
@@ -81,29 +38,25 @@ public class MainPage extends BasePage {
         .map((WebElement element) -> {
           return element.getText().trim();
         })
-        .filter((String missDate) -> !missDate.contains("О дате старта будет объявлено позже"))
+        .filter((String missDate) -> !missDate.contains("О дате старта будет объявлено позже") && !missDate.matches("В\\s+[А-Яа-я]+\\s+.*"))
         .map((String dateStr) -> {
           Pattern pattern = Pattern.compile("С?\\s*(\\d+)\\s+([А-Яа-я]+)");
           Matcher matcher = pattern.matcher(dateStr);
           if (matcher.find()) {
             int day = Integer.parseInt(matcher.group(1));
             String month = matcher.group(2);
-            try {
-              return LocalDate.of(LocalDate.now().getYear(), convertMonth(month), day);
-            } catch (DateNotFoundInList e) {
-              e.printStackTrace();
-            }
+            return LocalDate.of(LocalDate.now().getYear(), convertMonth(month), day);
           }
           return null;
         })
         .collect(Collectors.toList());
   }
 
-  private Month convertMonth(String month) throws DateNotFoundInList {
+  private Month convertMonth(String month) {
     for (MonthDate monthDate : MonthDate.values()) {
       if (monthDate.getName().equalsIgnoreCase(month)) {
         return monthDate.getMonth();
-      } else throw new DateNotFoundInList("Cant found valid month value");
+      }
     }
     return null;
   }
@@ -130,4 +83,5 @@ public class MainPage extends BasePage {
     WebDriverWait wait = new WebDriverWait(driver, 20);
     wait.until(ExpectedConditions.visibilityOfAllElements(collectValidDateList()));
   }
+
 }

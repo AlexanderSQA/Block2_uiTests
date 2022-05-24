@@ -9,6 +9,7 @@ import webdriverfactory.options.FirefoxWebDriver;
 import webdriverfactory.options.OperaWebDriver;
 import java.util.Locale;
 
+
 public class WDFactory {
 
   public EventFiringWebDriver getDriver() {
