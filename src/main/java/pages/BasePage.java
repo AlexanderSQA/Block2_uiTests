@@ -22,6 +22,7 @@ public abstract class BasePage<T> {
   public BasePage(WebDriver driver, String path) {
     this.driver = driver;
     this.path = path;
+    System.out.println(driver);
     this.wait = new WebDriverWait(driver, 4);
     this.actions = new Actions(driver);
     PageFactory.initElements(driver, this);

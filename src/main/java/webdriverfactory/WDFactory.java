@@ -11,10 +11,15 @@ import java.util.Locale;
 
 
 public class WDFactory {
+  //public SpringScoped springScoped;
+  //
+  //  public WDFactory(SpringScoped springScoped) {
+  //    this.springScoped = springScoped;
+  //  }
 
   public EventFiringWebDriver getDriver() {
     EventFiringWebDriver driver;
-
+    System.out.println("ДЕБАГ: " + System.getProperty("browser"));
     switch (System.getProperty("browser").trim().toUpperCase(Locale.ROOT)) {
       case "CHROME":
         WebDriverManager.chromedriver().setup();
