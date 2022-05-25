@@ -1,14 +1,11 @@
 package ru.otus.tests;
 
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.testng.annotations.Test;
 import pages.MainPage;
-import support.SpringConfig;
-import webdriverfactory.WDFactory;
 
 public class CourseFilter_Test extends BaseTest {
-  AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(SpringConfig.class);
-  private MainPage mainPage = context.getBean("mainPage", MainPage.class);
+
+  MainPage mainPage = new MainPage(driver);
 
   @Test
   public void findCourse() {

@@ -17,7 +17,7 @@ public class SpecPage extends BasePage<SpecPage> {
   @FindBy(xpath = "//div[contains(@class, 'tn-elem__33067862')]/a[text() = 'Успеть записаться']")
   private WebElement redirectButton;
 
-  @Autowired
+
   public SpecPage(WebDriver driver, SpecData page) {
     super(driver, "/lessons/" + page.getUrl());
   }

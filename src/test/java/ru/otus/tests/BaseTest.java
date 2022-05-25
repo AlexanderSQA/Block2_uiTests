@@ -10,7 +10,7 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import webdriverfactory.WDFactory;
 
-@Component
+
 public class BaseTest {
   protected WebDriver driver;
   protected WebDriverWait wait;

@@ -10,7 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.testng.Assert;
 
-@Component
+
 public abstract class BasePage<T> {
 
   private final String path;
@@ -20,7 +20,7 @@ public abstract class BasePage<T> {
 
   private By mainBanner = By.tagName("h1");
 
-@Autowired
+
   public BasePage(WebDriver driver, String path) {
     this.driver = driver;
     this.path = path;

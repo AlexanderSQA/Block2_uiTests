@@ -11,9 +11,9 @@ import webdriverfactory.options.FirefoxWebDriver;
 import webdriverfactory.options.OperaWebDriver;
 import java.util.Locale;
 
-@Component
+
 public class WDFactory {
-  @Bean
+
   public EventFiringWebDriver getDriver() {
     EventFiringWebDriver driver;
 
