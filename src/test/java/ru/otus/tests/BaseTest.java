@@ -12,7 +12,7 @@ import java.util.Locale;
 
 
 public class BaseTest {
-  protected EventFiringWebDriver driver;
+  protected WebDriver driver;
   protected WebDriverWait wait;
   protected Actions actions;
   protected org.apache.logging.log4j.Logger logger = LogManager.getLogger(BaseTest.class);
