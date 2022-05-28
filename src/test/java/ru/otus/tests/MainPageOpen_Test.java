@@ -1,11 +1,12 @@
 package ru.otus.tests;
 
+import com.google.inject.Inject;
 import org.testng.annotations.Test;
 import pages.MainPage;
 
 public class MainPageOpen_Test extends BaseTest {
-
-  MainPage mainPage = new MainPage(driver);
+  @Inject
+  MainPage mainPage;
 
   @Test
   public void checkOpeningMainPage() {

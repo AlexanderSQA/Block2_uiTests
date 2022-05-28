@@ -1,5 +1,6 @@
 package pages;
 
+import com.google.inject.Inject;
 import courses.FavoriteCourse;
 import courses.MonthDate;
 import courses.SpecializationCourse;
@@ -7,6 +8,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import support.GuiceScoped;
 import java.time.LocalDate;
 import java.time.Month;
 import java.util.Collection;
@@ -18,14 +20,14 @@ import java.util.stream.Stream;
 
 
 public class MainPage extends BasePage<MainPage> {
-
-  public MainPage(WebDriver driver) {
-    super(driver, "/");
+  @Inject
+  public MainPage(GuiceScoped guiceScoped) {
+    super(guiceScoped, "/");
   }
 
   private List<WebElement> collectValidDateList() {
-    FavoriteCourse favoriteCourse = new FavoriteCourse(driver);
-    SpecializationCourse specializationCourse = new SpecializationCourse(driver);
+    FavoriteCourse favoriteCourse = new FavoriteCourse(guiceScoped);
+    SpecializationCourse specializationCourse = new SpecializationCourse(guiceScoped);
     return Stream.of(favoriteCourse.getDateList(), specializationCourse.getDateList())
         .flatMap(Collection::stream)
         .collect(Collectors.toList());
@@ -78,7 +80,7 @@ public class MainPage extends BasePage<MainPage> {
   }
 
   public void waitUntilLessonsDateBeVisible() {
-    WebDriverWait wait = new WebDriverWait(driver, 20);
+    WebDriverWait wait = new WebDriverWait(guiceScoped.driver, 20);
     wait.until(ExpectedConditions.visibilityOfAllElements(collectValidDateList()));
   }
 

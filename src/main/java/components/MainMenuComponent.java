@@ -8,6 +8,7 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import support.GuiceScoped;
 
 
 public class MainMenuComponent extends ComponentAbs<MainMenuComponent> {
@@ -21,15 +22,15 @@ public class MainMenuComponent extends ComponentAbs<MainMenuComponent> {
   private String specializationPage = "//a[@title = '%s']";
 
 
-  public MainMenuComponent(WebDriver driver, Actions actions) {
-    super(driver, actions);
+  public MainMenuComponent(GuiceScoped guiceScoped) {
+    super(guiceScoped);
   }
 
   public MainMenuComponent checkOpenSpecPage(SpecData specData) {
-    actions.moveToElement(courseMenuItem)
-        .moveToElement(driver.findElement(By.xpath(String.format(testingSubMenuItem, specData.getTypeData().getName()))))
-        .moveToElement(driver.findElement(By.xpath(String.format(dropDownMenuTrigger, specData.getTypeData().getName()))))
-        .moveToElement(driver.findElement(By.xpath(String.format(specializationPage, specData.getSubMenuName())))).click().build().perform();
+    guiceScoped.actions.moveToElement(courseMenuItem)
+        .moveToElement(guiceScoped.driver.findElement(By.xpath(String.format(testingSubMenuItem, specData.getTypeData().getName()))))
+        .moveToElement(guiceScoped.driver.findElement(By.xpath(String.format(dropDownMenuTrigger, specData.getTypeData().getName()))))
+        .moveToElement(guiceScoped.driver.findElement(By.xpath(String.format(specializationPage, specData.getSubMenuName())))).click().build().perform();
     return this;
   }
 

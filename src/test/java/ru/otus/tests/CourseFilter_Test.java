@@ -1,10 +1,12 @@
 package ru.otus.tests;
 
+import com.google.inject.Inject;
 import org.testng.annotations.Test;
 import pages.MainPage;
 
 public class CourseFilter_Test extends BaseTest {
-  MainPage mainPage = new MainPage(driver);
+  @Inject
+  private MainPage mainPage;
 
   @Test
   public void findCourse() {

@@ -1,5 +1,6 @@
 package ru.otus.tests;
 
+import com.google.inject.Inject;
 import components.MainMenuComponent;
 import data.SpecData;
 import org.testng.annotations.Test;
@@ -8,10 +9,12 @@ import pages.SpecPage;
 import pages.SpecPageData;
 
 public class FindSpecPage_Test extends BaseTest {
-
-  MainPage mainPage = new MainPage(driver);
-  SpecPage specPage = new SpecPage(driver, SpecPageData.QA);
-  MainMenuComponent component = new MainMenuComponent(driver, actions);
+  @Inject
+  MainPage mainPage;
+  @Inject
+  SpecPage specPage;
+  @Inject
+  MainMenuComponent component;
 
   @Test
   public void navigateToJavaQaSpecPage() {

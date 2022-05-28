@@ -1,41 +1,33 @@
 package pages;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+import support.GuiceScoped;
 
 
 public abstract class BasePage<T> {
 
-  private final String path;
-  protected WebDriver driver;
-  protected WebDriverWait wait;
-  protected Actions actions;
+  protected GuiceScoped guiceScoped;
+  private String path;
 
   private By mainBanner = By.tagName("h1");
 
 
-  public BasePage(WebDriver driver, String path) {
-    this.driver = driver;
+  public BasePage(GuiceScoped guiceScoped, String path) {
+    this.guiceScoped = guiceScoped;
     this.path = path;
-    System.out.println(driver);
-    this.wait = new WebDriverWait(driver, 4);
-    this.actions = new Actions(driver);
-    PageFactory.initElements(driver, this);
+    PageFactory.initElements(guiceScoped.driver, this);
   }
 
   public T open() {
-    driver.get(System.getProperty("base.url") + path);
+    guiceScoped.driver.get(System.getProperty("base.url") + path);
     return (T) this;
   }
 
   public T mainBannerShouldBeHasHeader(String expectedHeader) {
-    wait.until(ExpectedConditions.visibilityOfElementLocated(mainBanner));
-    Assert.assertEquals(driver.findElement(mainBanner).getText(), expectedHeader);
+    //    guiceScoped.wait.until(ExpectedConditions.visibilityOfElementLocated(mainBanner));
+    Assert.assertEquals(guiceScoped.driver.findElement(mainBanner).getText(), expectedHeader);
     return (T) this;
   }
 

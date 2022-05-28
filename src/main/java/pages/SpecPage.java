@@ -1,11 +1,11 @@
 package pages;
 
+import com.google.inject.Inject;
 import data.PageData;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
+import support.GuiceScoped;
 
 public class SpecPage extends BasePage<SpecPage> {
   @FindBy(xpath = "//a[contains(@class, 'tn-atom')]/img[@class='tn-atom__img']")
@@ -14,8 +14,9 @@ public class SpecPage extends BasePage<SpecPage> {
   @FindBy(xpath = "//div[contains(@class, 'tn-elem__33067862')]/a[text() = 'Успеть записаться']")
   private WebElement redirectButton;
 
-  public SpecPage(WebDriver driver, SpecPageData page) {
-    super(driver, "/lessons/" + page.getUrl());
+  @Inject
+  public SpecPage(GuiceScoped guiceScoped, SpecPageData page) {
+    super(guiceScoped, "/lessons/" + page.getUrl());
   }
 
   public SpecPage checkRedirButtonText(String titleButton) {
@@ -24,14 +25,14 @@ public class SpecPage extends BasePage<SpecPage> {
   }
 
   public SpecPage clickAppButton() {
-    actions.moveToElement(appButton).click().perform();
+    guiceScoped.actions.moveToElement(appButton).click().perform();
     return this;
   }
 
   public AppNonAuthPage clickRedirectButton(PageData pageData) {
-    wait.until(ExpectedConditions.elementToBeClickable(redirectButton));
-    actions.moveToElement(redirectButton).click().build().perform();
-    return new AppNonAuthPage(driver, pageData);
+    //    guiceScoped.wait.until(ExpectedConditions.elementToBeClickable(redirectButton));
+    guiceScoped.actions.moveToElement(redirectButton).click().build().perform();
+    return new AppNonAuthPage(guiceScoped, pageData);
   }
 
 }

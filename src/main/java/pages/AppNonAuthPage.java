@@ -1,5 +1,6 @@
 package pages;
 
+import com.google.inject.Inject;
 import data.PageData;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -7,19 +8,20 @@ import org.openqa.selenium.WebElement;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.testng.Assert;
+import support.GuiceScoped;
 
 
 public class AppNonAuthPage extends BasePage<AppNonAuthPage> {
   private String id;
 
-
-  public AppNonAuthPage(WebDriver driver, PageData page) {
-    super(driver, "/assessment/" + page.getId());
+  @Inject
+  public AppNonAuthPage(GuiceScoped guiceScoped, PageData page) {
+    super(guiceScoped, "/assessment/" + page.getId());
     id = page.getId();
   }
 
   public WebElement getNoRefTitle() {
-    return driver.findElement(By.xpath(String.format("//div[@class = 'assessment-title__main_new']/a[contains(text(), %s)]", id)));
+    return guiceScoped.driver.findElement(By.xpath(String.format("//div[@class = 'assessment-title__main_new']/a[contains(text(), %s)]", id)));
   }
 
   public AppNonAuthPage checkNonAuthPageTitle() {
