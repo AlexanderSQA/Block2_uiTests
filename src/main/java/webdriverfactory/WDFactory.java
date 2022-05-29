@@ -1,5 +1,6 @@
 package webdriverfactory;
 
+import com.google.inject.Inject;
 import exceptions.DriverNotSupportedException;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import listeners.MouseListeners;
@@ -14,13 +15,14 @@ public class WDFactory {
 
   public GuiceScoped guiceScoped;
 
+  @Inject
   public WDFactory(GuiceScoped guiceScoped) {
     this.guiceScoped = guiceScoped;
   }
 
   public EventFiringWebDriver getDriver() {
     EventFiringWebDriver driver;
-    System.out.println("DEBUG: " + System.getProperty("browser"));
+
     switch (guiceScoped.browserName) {
       case "CHROME":
         WebDriverManager.chromedriver().setup();

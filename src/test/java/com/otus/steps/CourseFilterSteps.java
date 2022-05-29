@@ -9,7 +9,7 @@ import support.GuiceScoped;
 import webdriverfactory.WDFactory;
 
 
-public class CourseFilterSteps extends Hooks {
+public class CourseFilterSteps {
   @Inject
   private MainPage mainPage;
   @Inject
