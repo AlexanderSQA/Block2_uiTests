@@ -1,31 +1,27 @@
-package ru.otus.tests;
+package com.otus.steps.hooks;
 
 import com.google.inject.Inject;
+import io.cucumber.java.After;
+import io.cucumber.java.Before;
 import org.apache.logging.log4j.LogManager;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
 import support.GuiceScoped;
 import webdriverfactory.WDFactory;
-import java.util.Locale;
 
 
-public class BaseTest {
-  //  @Inject
-  //  protected WebDriver driver;
+public class Hooks {
+
   @Inject
   protected WebDriverWait wait;
   @Inject
   protected Actions actions;
   @Inject
-  protected org.apache.logging.log4j.Logger logger = LogManager.getLogger(BaseTest.class);
+  protected org.apache.logging.log4j.Logger logger = LogManager.getLogger(Hooks.class);
   @Inject
   private GuiceScoped guiceScoped;
 
-
-  @BeforeMethod(alwaysRun = true)
+  @Before
   public void setupWebDriver() {
     System.out.println("CHECK EXECUTING METHOD");
     guiceScoped.driver = new WDFactory(guiceScoped).getDriver();
@@ -33,7 +29,7 @@ public class BaseTest {
     actions = new Actions(guiceScoped.driver);
   }
 
-  @AfterMethod
+  @After
   public void close() {
     if (guiceScoped.driver != null) {
       guiceScoped.driver.close();

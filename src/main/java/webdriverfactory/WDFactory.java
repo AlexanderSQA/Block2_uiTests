@@ -8,7 +8,6 @@ import support.GuiceScoped;
 import webdriverfactory.options.ChromeWebDriver;
 import webdriverfactory.options.FirefoxWebDriver;
 import webdriverfactory.options.OperaWebDriver;
-import java.util.Locale;
 
 
 public class WDFactory {

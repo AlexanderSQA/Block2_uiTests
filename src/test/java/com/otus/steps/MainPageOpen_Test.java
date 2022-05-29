@@ -1,12 +1,13 @@
-package ru.otus.tests;
+package com.otus.steps;
 
 import com.google.inject.Inject;
+import com.otus.steps.hooks.Hooks;
 import org.testng.annotations.Test;
 import pages.MainPage;
 
-public class MainPageOpen_Test extends BaseTest {
+public class MainPageOpen_Test extends Hooks {
   @Inject
-  MainPage mainPage;
+  private MainPage mainPage;
 
   @Test
   public void checkOpeningMainPage() {

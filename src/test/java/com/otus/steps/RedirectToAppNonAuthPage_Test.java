@@ -1,12 +1,12 @@
-package ru.otus.tests;
+package com.otus.steps;
 
 import com.google.inject.Inject;
+import com.otus.steps.hooks.Hooks;
 import data.PageData;
 import org.testng.annotations.Test;
 import pages.SpecPage;
-import pages.SpecPageData;
 
-public class RedirectToAppNonAuthPage_Test extends BaseTest {
+public class RedirectToAppNonAuthPage_Test extends Hooks {
   @Inject
   private SpecPage specPage;
 

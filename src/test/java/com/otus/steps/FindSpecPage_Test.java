@@ -1,20 +1,20 @@
-package ru.otus.tests;
+package com.otus.steps;
 
 import com.google.inject.Inject;
+import com.otus.steps.hooks.Hooks;
 import components.MainMenuComponent;
 import data.SpecData;
 import org.testng.annotations.Test;
 import pages.MainPage;
 import pages.SpecPage;
-import pages.SpecPageData;
 
-public class FindSpecPage_Test extends BaseTest {
+public class FindSpecPage_Test extends Hooks {
   @Inject
-  MainPage mainPage;
+  private MainPage mainPage;
   @Inject
-  SpecPage specPage;
+  private SpecPage specPage;
   @Inject
-  MainMenuComponent component;
+  private MainMenuComponent component;
 
   @Test
   public void navigateToJavaQaSpecPage() {
