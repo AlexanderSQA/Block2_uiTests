@@ -1,7 +1,7 @@
 package com.otus.steps;
 
 import com.google.inject.Inject;
-import com.otus.steps.hooks.Hooks;
+import io.cucumber.java.ru.Если;
 import io.cucumber.java.ru.Пусть;
 import io.cucumber.java.ru.Тогда;
 import pages.MainPage;
@@ -17,12 +17,6 @@ public class CourseFilterSteps {
   @Inject
   private WDFactory driverFactory;
 
-  //  @Test
-  //  public void findCourse() {
-  //    mainPage.open();
-  //    System.out.println(mainPage.minDate().toString());
-  //    System.out.println(mainPage.maxDate().toString());
-  //  }
 
   @Пусть("^Открыта главная страница курса otus в браузере$")
   public void openMainPage() {
@@ -34,5 +28,17 @@ public class CourseFilterSteps {
   @Тогда("Главная страница открыта и заголовок {string}")
   public void pageShouldBeOpened(String expectedHeader) {
     mainPage.mainBannerShouldBeHasHeader(expectedHeader);
+  }
+
+  @Если("Найдены самый ранний и самый поздний курсы")
+  public void findingMinAndMaxDateStartingCourses() {
+    mainPage.minDate();
+    mainPage.maxDate();
+  }
+
+  @Тогда("Вывести даты курсов в консоль")
+  public void getMinAndMaxDateStartingCourses() {
+    System.out.println(mainPage.minDate().toString());
+    System.out.println(mainPage.maxDate().toString());
   }
 }
