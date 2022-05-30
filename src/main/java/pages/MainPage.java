@@ -6,6 +6,7 @@ import courses.MonthDate;
 import courses.SpecializationCourse;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import support.GuiceScoped;
@@ -20,9 +21,27 @@ import java.util.stream.Stream;
 
 
 public class MainPage extends BasePage<MainPage> {
+
+  @FindBy(css = ".lessons__new-item-title")
+  private List<WebElement> courseTitleList;
+
+
   @Inject
   public MainPage(GuiceScoped guiceScoped) {
     super(guiceScoped, "/");
+  }
+
+  public List<WebElement> getCourseTitleList() {
+    return courseTitleList;
+  }
+
+  private List<String> getListOfTitle(String courseTitle){
+    return getCourseTitleList().stream()
+        .map((WebElement element) -> {
+          return element.getText();
+        })
+        .filter((String title) -> title.contains(courseTitle))
+        .collect(Collectors.toList());
   }
 
   private List<WebElement> collectValidDateList() {

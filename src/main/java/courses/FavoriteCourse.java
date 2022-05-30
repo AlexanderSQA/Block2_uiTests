@@ -11,7 +11,6 @@ public class FavoriteCourse extends MainPage {
 
   @FindBy(css = ".lessons__new-item-start")
   private List<WebElement> dateList;
-
   public FavoriteCourse(GuiceScoped guiceScoped) {
     super(guiceScoped);
   }
