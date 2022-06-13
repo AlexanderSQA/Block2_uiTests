@@ -13,7 +13,16 @@ public class Hooks {
 
   @Inject
   private GuiceScoped guiceScoped;
+  @Inject
+  private WDFactory driverFactory;
 
+
+  @Before
+  public void startUp() {
+    guiceScoped.browserName = "chrome";
+    guiceScoped.driver = driverFactory.getDriver();
+    guiceScoped.wait = new WebDriverWait(guiceScoped.driver, 10);
+  }
 
   @After
   public void close() {

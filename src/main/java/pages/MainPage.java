@@ -4,7 +4,8 @@ import com.google.inject.Inject;
 import courses.FavoriteCourse;
 import courses.MonthDate;
 import courses.SpecializationCourse;
-import org.openqa.selenium.WebDriver;
+import lombok.var;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -14,6 +15,8 @@ import java.time.LocalDate;
 import java.time.Month;
 import java.util.Collection;
 import java.util.List;
+import java.util.Map;
+import java.util.NoSuchElementException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
@@ -25,23 +28,29 @@ public class MainPage extends BasePage<MainPage> {
   @FindBy(css = ".lessons__new-item-title")
   private List<WebElement> courseTitleList;
 
+  @FindBy(css = ".lessons__new-item-bg")
+  private List<WebElement> courseBar;
 
   @Inject
   public MainPage(GuiceScoped guiceScoped) {
     super(guiceScoped, "/");
   }
 
-  public List<WebElement> getCourseTitleList() {
-    return courseTitleList;
+
+  public MainPage clickOnCourseContainTitle(String courseTitle) {
+    var course = courseTitleList.stream()
+        .filter((WebElement element) -> element.getText().trim().contains(courseTitle.trim()))
+        .findFirst().orElseThrow(NoSuchElementException::new);
+    ((JavascriptExecutor) guiceScoped.driver).executeScript("arguments[0].scrollIntoView(true);", course);
+    return this;
   }
 
-  private List<String> getListOfTitle(String courseTitle){
-    return getCourseTitleList().stream()
-        .map((WebElement element) -> {
-          return element.getText();
-        })
-        .filter((String title) -> title.contains(courseTitle))
-        .collect(Collectors.toList());
+  public Map<List<LocalDate>, List<WebElement>> findCourseStartingAfterDate() {
+    return courseBar.stream()
+        .filter((WebElement element) -> !element.getText().contains("О дате старта будет объявлено позже") && !element.getText().matches("В\\s+[А-Яа-я]+\\s+.*"))
+        .collect(Collectors.toMap((WebElement element) -> {
+          return this;
+        }));
   }
 
   private List<WebElement> collectValidDateList() {

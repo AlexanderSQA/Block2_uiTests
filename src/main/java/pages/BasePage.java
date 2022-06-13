@@ -11,6 +11,7 @@ public abstract class BasePage<T> {
   protected GuiceScoped guiceScoped;
   private String path;
 
+
   private By mainBanner = By.tagName("h1");
 
 

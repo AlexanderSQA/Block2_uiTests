@@ -14,14 +14,11 @@ public class CourseFilterSteps {
   private MainPage mainPage;
   @Inject
   private GuiceScoped guiceScoped;
-  @Inject
-  private WDFactory driverFactory;
+
 
 
   @Пусть("^Открыта главная страница курса otus в браузере$")
   public void openMainPage() {
-    guiceScoped.browserName = "chrome";
-    guiceScoped.driver = driverFactory.getDriver();
     mainPage.open();
   }
 

@@ -1,5 +1,6 @@
 package components;
 
+import com.google.inject.Inject;
 import data.SpecData;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -17,7 +18,9 @@ public class MainMenuComponent extends ComponentAbs<MainMenuComponent> {
 
   private String specializationPage = "//a[@title = '%s']";
 
+  private String trainingCourses = "//a[@title = 'Подготовительные курсы']";
 
+  @Inject
   public MainMenuComponent(GuiceScoped guiceScoped) {
     super(guiceScoped);
   }
@@ -30,4 +33,9 @@ public class MainMenuComponent extends ComponentAbs<MainMenuComponent> {
     return this;
   }
 
+  public MainMenuComponent openTrainingCoursePage() {
+    guiceScoped.actions.moveToElement(courseMenuItem)
+        .moveToElement(guiceScoped.driver.findElement(By.xpath(trainingCourses))).click().build().perform();
+    return this;
+  }
 }
