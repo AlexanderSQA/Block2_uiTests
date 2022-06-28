@@ -2,8 +2,11 @@ package components;
 
 import com.google.inject.Inject;
 import data.SpecData;
+import lombok.var;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import support.GuiceScoped;
 

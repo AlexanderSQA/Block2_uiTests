@@ -30,7 +30,6 @@ public class SpecPage extends BasePage<SpecPage> {
   }
 
   public AppNonAuthPage clickRedirectButton(PageData pageData) {
-    //    guiceScoped.wait.until(ExpectedConditions.elementToBeClickable(redirectButton));
     guiceScoped.actions.moveToElement(redirectButton).click().build().perform();
     return new AppNonAuthPage(guiceScoped, pageData);
   }

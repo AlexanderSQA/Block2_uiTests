@@ -5,6 +5,7 @@ import courses.FavoriteCourse;
 import courses.MonthDate;
 import courses.SpecializationCourse;
 import lombok.var;
+import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -45,12 +46,36 @@ public class MainPage extends BasePage<MainPage> {
     return this;
   }
 
-  public Map<List<LocalDate>, List<WebElement>> findCourseStartingAfterDate() {
+  private Map<LocalDate, String> findCourseStartingAfterDate() {
     return courseBar.stream()
-        .filter((WebElement element) -> !element.getText().contains("О дате старта будет объявлено позже") && !element.getText().matches("В\\s+[А-Яа-я]+\\s+.*"))
+        .filter((WebElement element) -> {
+          WebElement elementDate =
+              element.findElement(By.cssSelector(".container-padding-bottom .lessons__new-item-time, .lessons__new-item-start"));
+          return !elementDate.getText().contains("О дате старта будет объявлено позже")
+              && !elementDate.getText().matches("В\\s+[А-Яа-я]+\\s+.*");
+        })
         .collect(Collectors.toMap((WebElement element) -> {
-          return this;
-        }));
+              WebElement elementData =
+                  element.findElement(By.cssSelector(".container-padding-bottom .lessons__new-item-time, .lessons__new-item-start"));
+              Pattern pattern = Pattern.compile("С?\\s*(\\d+)\\s+([А-Яа-я]+)");
+              Matcher matcher = pattern.matcher(elementData.getText());
+              if (matcher.find()) {
+                int day = Integer.parseInt(matcher.group(1));
+                String month = matcher.group(2);
+                return LocalDate.of(LocalDate.now().getYear(), convertMonth(month), day);
+              }
+              return null;
+            },
+            (WebElement element) -> element.findElement(By.cssSelector(".lessons__new-item-title")).getText()));
+  }
+
+  public void getCourseAfterDate(LocalDate localDate){
+    for (LocalDate key: findCourseStartingAfterDate().keySet()) {
+      String value = findCourseStartingAfterDate().get(key);
+      if (key.isAfter(localDate)){
+        System.out.println(key + " --> " + value);
+      }
+    }
   }
 
   private List<WebElement> collectValidDateList() {

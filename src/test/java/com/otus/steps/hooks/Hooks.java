@@ -22,6 +22,7 @@ public class Hooks {
     guiceScoped.browserName = "chrome";
     guiceScoped.driver = driverFactory.getDriver();
     guiceScoped.wait = new WebDriverWait(guiceScoped.driver, 10);
+    guiceScoped.actions = new Actions(guiceScoped.driver);
   }
 
   @After

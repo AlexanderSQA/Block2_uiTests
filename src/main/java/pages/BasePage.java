@@ -27,7 +27,6 @@ public abstract class BasePage<T> {
   }
 
   public T mainBannerShouldBeHasHeader(String expectedHeader) {
-    //    guiceScoped.wait.until(ExpectedConditions.visibilityOfElementLocated(mainBanner));
     Assert.assertEquals(guiceScoped.driver.findElement(mainBanner).getText(), expectedHeader);
     return (T) this;
   }

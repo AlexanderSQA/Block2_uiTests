@@ -3,8 +3,8 @@ package com.otus.steps;
 import com.google.inject.Inject;
 import components.MainMenuComponent;
 import courses.TrainingCourses;
-import io.cucumber.java.ru.Если;
-import io.cucumber.java.ru.Тогда;
+import io.cucumber.java.ru.Р•СЃР»Рё;
+import io.cucumber.java.ru.РўРѕРіРґР°;
 
 public class TrainingCoursesSteps {
 
@@ -14,13 +14,15 @@ public class TrainingCoursesSteps {
   private MainMenuComponent mainMenuComponent;
 
 
-  @Если("Выбрать категорию подготовительных курсов")
-  public void openTrainingCoursesPage(){
+  @Р•СЃР»Рё("Р’С‹Р±СЂР°С‚СЊ РєР°С‚РµРіРѕСЂРёСЋ РїРѕРґРіРѕС‚РѕРІРёС‚РµР»СЊРЅС‹С… РєСѓСЂСЃРѕРІ")
+  public void openTrainingCoursesPage() {
     mainMenuComponent.openTrainingCoursePage();
   }
 
-  @Тогда("Найден самый дешевый и самый дорогой курсы")
-  public void getBounderyCostOfCourses(){
+  @РўРѕРіРґР°("РќР°Р№РґРµРЅ СЃР°РјС‹Р№ РґРµС€РµРІС‹Р№ Рё СЃР°РјС‹Р№ РґРѕСЂРѕРіРѕР№ РєСѓСЂСЃС‹")
+  public void getBounderyCostOfCourses() {
+    System.out.println(trainingCourses.getTitleCourseWithMinCost());
+    System.out.println(trainingCourses.getTitleCourseWithMaxCost());
 
   }
 }
