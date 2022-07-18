@@ -14,10 +14,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import support.GuiceScoped;
 import java.time.LocalDate;
 import java.time.Month;
-import java.util.Collection;
-import java.util.List;
-import java.util.Map;
-import java.util.NoSuchElementException;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
@@ -29,7 +26,7 @@ public class MainPage extends BasePage<MainPage> {
   @FindBy(css = ".lessons__new-item-title")
   private List<WebElement> courseTitleList;
 
-  @FindBy(css = ".lessons__new-item-bg")
+  @FindBy(css = ".lessons__new-item-container")
   private List<WebElement> courseBar;
 
   @Inject
@@ -46,34 +43,37 @@ public class MainPage extends BasePage<MainPage> {
     return this;
   }
 
-  private Map<LocalDate, String> findCourseStartingAfterDate() {
+  private Map<String, LocalDate> findCourseStartingAfterDate() {
+
     return courseBar.stream()
-        .filter((WebElement element) -> {
-          WebElement elementDate =
-              element.findElement(By.cssSelector(".container-padding-bottom .lessons__new-item-time, .lessons__new-item-start"));
-          return !elementDate.getText().contains("О дате старта будет объявлено позже")
-              && !elementDate.getText().matches("В\\s+[А-Яа-я]+\\s+.*");
+        .filter(elementDate -> {
+          WebElement element =
+              elementDate.findElement(By.cssSelector(".container-padding-bottom .lessons__new-item-time, .lessons__new-item-start"));
+          return !element.getText().contains("О дате старта будет объявлено позже")
+              && !element.getText().matches("В\\s+[А-Яа-я]+\\s+.*");
         })
-        .collect(Collectors.toMap((WebElement element) -> {
-              WebElement elementData =
-                  element.findElement(By.cssSelector(".container-padding-bottom .lessons__new-item-time, .lessons__new-item-start"));
+        .collect(Collectors.toMap(
+            (WebElement elementTitle) -> {
+            return   elementTitle.findElement(By.xpath(".//div[contains(@class, 'lessons__new-item-title')]")).getText();
+
+            },
+            (WebElement element) -> {
               Pattern pattern = Pattern.compile("С?\\s*(\\d+)\\s+([А-Яа-я]+)");
-              Matcher matcher = pattern.matcher(elementData.getText());
+              Matcher matcher = pattern.matcher(element.getText());
               if (matcher.find()) {
                 int day = Integer.parseInt(matcher.group(1));
                 String month = matcher.group(2);
                 return LocalDate.of(LocalDate.now().getYear(), convertMonth(month), day);
               }
               return null;
-            },
-            (WebElement element) -> element.findElement(By.cssSelector(".lessons__new-item-title")).getText()));
+            })
+        );
   }
 
-  public void getCourseAfterDate(LocalDate localDate){
-    for (LocalDate key: findCourseStartingAfterDate().keySet()) {
-      String value = findCourseStartingAfterDate().get(key);
-      if (key.isAfter(localDate)){
-        System.out.println(key + " --> " + value);
+  public void getCourseAfterDate(LocalDate localDate) {
+    for (Map.Entry<String, LocalDate> entry : findCourseStartingAfterDate().entrySet()) {
+      if (entry.getValue().isAfter(localDate)) {
+        System.out.println(entry.getKey());
       }
     }
   }
