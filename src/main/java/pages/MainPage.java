@@ -55,7 +55,6 @@ public class MainPage extends BasePage<MainPage> {
         .collect(Collectors.toMap(
             (WebElement elementTitle) -> {
             return   elementTitle.findElement(By.xpath(".//div[contains(@class, 'lessons__new-item-title')]")).getText();
-
             },
             (WebElement element) -> {
               Pattern pattern = Pattern.compile("С?\\s*(\\d+)\\s+([А-Яа-я]+)");
